@@ -1,0 +1,76 @@
+{
+  "nome": "Trattoria da Nives",
+  "categoria": "ristoranti",
+  "tipo": "trattoria",
+  "quartiere": "Testaccio",
+  "slogan": "La cucina romana di casa, come la domenica a pranzo.",
+  "descrizione": "Da Nives è una piccola trattoria di famiglia nel cuore di Testaccio. In cucina si preparano i piatti della tradizione romana, con la pasta tirata a mano e le verdure di stagione. A tavola si sta senza fretta, tra un bicchiere di vino della casa e due chiacchiere.",
+  "cucina": "romana",
+  "coperti": 40,
+  "menu": [
+    {
+      "sezione": "Antipasti",
+      "piatti": [
+        { "nome": "Bruschette al pomodoro", "descrizione": "Pane casereccio, pomodoro, basilico e olio extravergine.", "prezzo": 6 },
+        { "nome": "Carciofo alla giudia", "descrizione": "Fritto intero, croccante fuori e morbido dentro. Di stagione.", "prezzo": 7 },
+        { "nome": "Supplì al telefono", "descrizione": "Riso al sugo con cuore di mozzarella filante.", "prezzo": 2.5 },
+        { "nome": "Fiori di zucca fritti", "descrizione": "Ripieni di mozzarella e alici.", "prezzo": 8 }
+      ]
+    },
+    {
+      "sezione": "Primi",
+      "piatti": [
+        { "nome": "Cacio e pepe", "descrizione": "Tonnarelli, pecorino romano e pepe nero macinato al momento.", "prezzo": 12 },
+        { "nome": "Carbonara", "descrizione": "Rigatoni, guanciale croccante, tuorlo e pecorino.", "prezzo": 13 },
+        { "nome": "Amatriciana", "descrizione": "Bucatini, guanciale, pomodoro e pecorino.", "prezzo": 12 },
+        { "nome": "Gricia", "descrizione": "Mezze maniche, guanciale e pecorino.", "prezzo": 12 }
+      ]
+    },
+    {
+      "sezione": "Secondi",
+      "piatti": [
+        { "nome": "Saltimbocca alla romana", "descrizione": "Fettine di vitello con prosciutto crudo e salvia.", "prezzo": 16 },
+        { "nome": "Coda alla vaccinara", "descrizione": "Cotta a lungo nel sugo di pomodoro e sedano.", "prezzo": 18 },
+        { "nome": "Abbacchio a scottadito", "descrizione": "Costolette di agnello alla brace.", "prezzo": 19 },
+        { "nome": "Polpette al sugo", "descrizione": "Come le faceva la nonna.", "prezzo": 13 }
+      ]
+    },
+    {
+      "sezione": "Contorni",
+      "piatti": [
+        { "nome": "Cicoria ripassata", "descrizione": "In padella con aglio, olio e peperoncino.", "prezzo": 5 },
+        { "nome": "Puntarelle", "descrizione": "Con salsa di alici. Di stagione.", "prezzo": 6 },
+        { "nome": "Patate al forno", "descrizione": "Con rosmarino.", "prezzo": 5 }
+      ]
+    },
+    {
+      "sezione": "Dolci",
+      "piatti": [
+        { "nome": "Tiramisù della casa", "prezzo": 6 },
+        { "nome": "Crostata di visciole e ricotta", "prezzo": 6 },
+        { "nome": "Maritozzo con la panna", "prezzo": 4 }
+      ]
+    },
+    {
+      "sezione": "Vini e bevande",
+      "piatti": [
+        { "nome": "Vino della casa (¼ l)", "descrizione": "Bianco o rosso.", "prezzo": 4 },
+        { "nome": "Vino della casa (½ l)", "descrizione": "Bianco o rosso.", "prezzo": 7 },
+        { "nome": "Acqua (1 l)", "prezzo": 2.5 },
+        { "nome": "Caffè", "prezzo": 1.5 }
+      ]
+    }
+  ],
+  "servizi_extra": ["asporto", "dehors", "consegna a domicilio", "piatti vegetariani", "animali ammessi", "pagamento con carte"],
+  "orari": [
+    { "giorno": "Lunedì", "orario": "Chiuso" },
+    { "giorno": "Martedì – Venerdì", "orario": "12:30 – 15:00, 19:30 – 23:00" },
+    { "giorno": "Sabato", "orario": "12:30 – 15:30, 19:30 – 23:30" },
+    { "giorno": "Domenica", "orario": "12:30 – 15:30" }
+  ],
+  "indirizzo": "Via Marmorata 1, 00153 Roma RM",
+  "telefono": "06 1234 5678",
+  "whatsapp": "393331234567",
+  "email": "prenotazioni@danives-esempio.it",
+  "tema": "naturale"
+}

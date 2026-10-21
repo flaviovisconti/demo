@@ -1,0 +1,30 @@
+{
+  "nome": "Ondina Atelier",
+  "categoria": "parrucchieri",
+  "tipo": "parrucchiere",
+  "quartiere": "Monti",
+  "slogan": "Tagli su misura e colore naturale, nel cuore di Monti.",
+  "descrizione": "Ondina è un piccolo atelier di capelli tra le vie di Monti. Lavoriamo su appuntamento, un cliente alla volta, per dedicare a ogni taglio e a ogni colore il tempo che serve. Ti aiutiamo a scegliere lo stile più adatto a te e a mantenerlo facilmente a casa.",
+  "servizi": [
+    { "nome": "Taglio donna", "descrizione": "Consulenza, shampoo, taglio e piega.", "prezzo": 45 },
+    { "nome": "Taglio uomo", "descrizione": "Shampoo, taglio e styling.", "prezzo": 25 },
+    { "nome": "Piega", "descrizione": "Piega liscia o mossa con phon e spazzola.", "prezzo": 22 },
+    { "nome": "Colore", "descrizione": "Colore uniforme dalla radice alle punte.", "prezzo": "da 55 €" },
+    { "nome": "Balayage", "descrizione": "Schiariture sfumate a mano libera per un effetto naturale.", "prezzo": "da 95 €" },
+    { "nome": "Trattamento ristrutturante", "descrizione": "Maschera nutriente per capelli secchi o trattati.", "prezzo": 18.5 }
+  ],
+  "orari": [
+    { "giorno": "Lunedì", "orario": "Chiuso" },
+    { "giorno": "Martedì", "orario": "9:30 – 19:00" },
+    { "giorno": "Mercoledì", "orario": "9:30 – 19:00" },
+    { "giorno": "Giovedì", "orario": "11:00 – 20:30" },
+    { "giorno": "Venerdì", "orario": "9:30 – 19:00" },
+    { "giorno": "Sabato", "orario": "9:00 – 18:00" },
+    { "giorno": "Domenica", "orario": "Chiuso" }
+  ],
+  "indirizzo": "Via del Boschetto 1, 00184 Roma RM",
+  "telefono": "06 1234 5678",
+  "whatsapp": "393331234567",
+  "email": "ciao@ondina-esempio.it",
+  "tema": "elegante"
+}

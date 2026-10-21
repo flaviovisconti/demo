@@ -1,0 +1,29 @@
+{
+  "nome": "Idraulica Ferretti",
+  "categoria": "artigiani",
+  "tipo": "idraulico",
+  "quartiere": "Monteverde",
+  "slogan": "Perdite, scarichi e caldaie: ti rispondiamo noi, al telefono.",
+  "descrizione": "Siamo una piccola impresa idraulica di Monteverde. Ci occupiamo di riparazioni e di nuovi impianti in case, negozi e condomini. Prima di ogni lavoro ti spieghiamo cosa c'è da fare, in modo semplice.",
+  "servizi": [
+    { "nome": "Riparazione perdite", "descrizione": "Ricerca e riparazione di perdite da tubi, rubinetti e raccordi." },
+    { "nome": "Scarichi intasati", "descrizione": "Sblocco di lavandini, wc, docce e colonne di scarico." },
+    { "nome": "Caldaie e scaldabagni", "descrizione": "Sostituzione e installazione di caldaie e scaldabagni." },
+    { "nome": "Rifacimento bagno", "descrizione": "Nuovo impianto idraulico e sostituzione dei sanitari." },
+    { "nome": "Rubinetteria", "descrizione": "Sostituzione di rubinetti, miscelatori e soffioni doccia." },
+    { "nome": "Impianti per condomini", "descrizione": "Manutenzione di colonne montanti e autoclavi." }
+  ],
+  "zone_servite": ["Monteverde", "Trastevere", "Portuense", "Gianicolense", "Marconi", "Testaccio", "San Paolo"],
+  "pronto_intervento": true,
+  "anni_esperienza": 22,
+  "orari": [
+    { "giorno": "Lunedì – Venerdì", "orario": "8:00 – 13:00, 14:30 – 18:30" },
+    { "giorno": "Sabato", "orario": "8:30 – 12:30" },
+    { "giorno": "Domenica", "orario": "Chiuso" }
+  ],
+  "indirizzo": "Via di Monteverde 1, 00152 Roma RM",
+  "telefono": "06 1234 5678",
+  "whatsapp": "393331234567",
+  "email": "info@idraulicaferretti-esempio.it",
+  "tema": "elegante"
+}

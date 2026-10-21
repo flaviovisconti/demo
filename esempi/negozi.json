@@ -1,0 +1,29 @@
+{
+  "nome": "Ferramenta Pignatelli",
+  "categoria": "negozi",
+  "tipo": "ferramenta",
+  "quartiere": "Pigneto",
+  "slogan": "Dalla vite che manca all'attrezzo giusto: chiedi a noi.",
+  "descrizione": "Siamo una ferramenta di quartiere al Pigneto. Teniamo utensili, viteria, vernici e materiale elettrico e idraulico per i piccoli lavori di casa. Se non hai il pezzo con te, portaci una foto: cerchiamo insieme quello giusto.",
+  "categorie_prodotti": [
+    { "nome": "Utensili manuali", "descrizione": "Martelli, cacciaviti, pinze, chiavi e seghe per ogni lavoro.", "immagine": 1 },
+    { "nome": "Viteria e minuteria", "descrizione": "Viti, tasselli, bulloni, chiodi e rondelle, anche sfusi.", "immagine": 2 },
+    { "nome": "Attrezzatura da lavoro", "descrizione": "Set di chiavi, cassette porta attrezzi e organizzatori.", "immagine": 3 },
+    { "nome": "Chiavi e idraulica", "descrizione": "Chiavi inglesi, raccordi, guarnizioni e nastro per perdite.", "immagine": 4 },
+    { "nome": "Fissaggio", "descrizione": "Chiodi, ganci, colle e tasselli per pareti e cartongesso.", "immagine": 5 },
+    { "nome": "Fai da te", "descrizione": "Tutto per i piccoli lavori di casa e del giardino.", "immagine": 6 }
+  ],
+  "marchi": ["Bosch", "Stanley", "Fischer", "Beta", "Sikkens"],
+  "servizi_extra": ["duplicazione chiavi", "taglio legno su misura", "tintometro per vernici", "consegna a domicilio", "ordini su richiesta", "pagamento con carte"],
+  "social": { "instagram": "@ferramentapignatelli_esempio", "facebook": "ferramentapignatelli.esempio" },
+  "orari": [
+    { "giorno": "Lunedì – Venerdì", "orario": "8:30 – 13:00, 15:30 – 19:30" },
+    { "giorno": "Sabato", "orario": "8:30 – 13:00" },
+    { "giorno": "Domenica", "orario": "Chiuso" }
+  ],
+  "indirizzo": "Via del Pigneto 1, 00176 Roma RM",
+  "telefono": "06 1234 5678",
+  "whatsapp": "393331234567",
+  "email": "info@ferramentapignatelli-esempio.it",
+  "tema": "moderno"
+}
