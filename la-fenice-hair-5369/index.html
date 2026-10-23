@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Anteprima sito</title>
+<meta name="description" content="Anteprima dimostrativa di un sito web. Non è il sito ufficiale dell'attività.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<script id="dati" type="application/json">{"nome":"La Fenice Hair","categoria":"parrucchieri","tipo":"parrucchiere","quartiere":"Tiburtina","slogan":"Stile, cura e tendenza per valorizzare la tua chioma a Roma.","descrizione":"La Fenice Hair è il salone di bellezza pensato per chi desidera rinnovare il proprio look o prendersi cura dei propri capelli. Offriamo trattamenti personalizzati, tagli alla moda e colorazioni all'avanguardia in un ambiente accogliente e professionale.","servizi":[{"nome":"Taglio donna","descrizione":"Consulenza d'immagine, shampoo, taglio e piega modellante.","prezzo":40},{"nome":"Taglio uomo","descrizione":"Shampoo, taglio e styling personalizzato.","prezzo":23},{"nome":"Piega","descrizione":"Shampoo e piega con prodotti professionali.","prezzo":20},{"nome":"Colore","descrizione":"Applicazione colore con prodotti delicati per la cute.","prezzo":"da 50 €"},{"nome":"Balayage","descrizione":"Schiariture e sfumature luminose per un effetto naturale.","prezzo":"da 90 €"},{"nome":"Trattamento ricostruzione","descrizione":"Trattamento profondo per capelli danneggiati o sfibrati.","prezzo":25}],"orari":[{"giorno":"Lunedì","orario":"Chiuso"},{"giorno":"Martedì","orario":"9:00 – 19:00"},{"giorno":"Mercoledì","orario":"9:00 – 19:00"},{"giorno":"Giovedì","orario":"9:00 – 19:00"},{"giorno":"Venerdì","orario":"9:00 – 19:30"},{"giorno":"Sabato","orario":"8:30 – 18:30"},{"giorno":"Domenica","orario":"Chiuso"}],"indirizzo":"Viale Stefano d'Arrigo 29/31, 00131 Roma RM","telefono":"+39 349 1139706","whatsapp":"393491139706","email":"","tema":"elegante"}</script>
+
+<script>
+/* Legge tipo e tema prima del rendering: imposta gli attributi, carica i font giusti e precarica l'immagine hero. */
+(function () {
+  var d = {};
+  try { d = JSON.parse(document.getElementById('dati').textContent); } catch (e) {}
+  if (!d || typeof d !== 'object') d = {};
+  var temaDefault = { barbiere: 'moderno', parrucchiere: 'elegante', estetista: 'naturale' };
+  var tipo = temaDefault[d.tipo] ? d.tipo : 'parrucchiere';
+  var tema = { elegante: 1, moderno: 1, naturale: 1 }[d.tema] ? d.tema : temaDefault[tipo];
+  // Percorso assoluto delle immagini: funziona anche quando la pagina viene copiata in /demo/<nome-attivita>/.
+  var ASSETS = '/demo/templates/parrucchieri/assets/';
+  var root = document.documentElement;
+  root.setAttribute('data-assets', ASSETS);
+  root.setAttribute('data-tipo', tipo);
+  root.setAttribute('data-tema', tema);
+
+  var font = {
+    elegante: 'family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500',
+    moderno: 'family=Syne:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700',
+    naturale: 'family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Figtree:wght@400;500;600'
+  };
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'https://fonts.googleapis.com/css2?' + font[tema] + '&display=swap';
+  document.head.appendChild(link);
+
+  [['(max-width: 759px)', 'hero-800'], ['(min-width: 760px)', 'hero-1600']].forEach(function (p) {
+    var l = document.createElement('link');
+    l.rel = 'preload'; l.as = 'image'; l.media = p[0];
+    l.href = ASSETS + tipo + '/' + p[1] + '.webp';
+    document.head.appendChild(l);
+  });
+})();
+</script>
+
+<style>
+/* ---------- Temi ---------- */
+:root {
+  --banner-h: 44px;
+  --header-h: 64px;
+  --maxw: 72rem;
+}
+[data-tema="elegante"] {
+  --bg: #f7f3ee; --surface: #eee6db; --ink: #1d1a17; --muted: #645b52; --line: #d8cdbf;
+  --accent: #8a6438; --accent-text: #80592e; --accent-ink: #fff; --accent-on-dark: #cfae84;
+  --dark: #171412; --on-dark: #f3ece3; --on-dark-muted: #b8ac9f;
+  --font-display: "Cormorant Garamond", "Times New Roman", Georgia, serif;
+  --font-body: "Jost", system-ui, sans-serif;
+  --display-weight: 500; --display-tracking: -0.01em;
+  --radius: 0; --btn-radius: 0;
+}
+[data-tema="moderno"] {
+  --bg: #f1f1ec; --surface: #ffffff; --ink: #0f0f0f; --muted: #55554f; --line: #d4d4cc;
+  --accent: #ff5a26; --accent-text: #bf360a; --accent-ink: #0f0f0f; --accent-on-dark: #ff6a3a;
+  --dark: #0f0f0f; --on-dark: #f1f1ec; --on-dark-muted: #a5a59e;
+  --font-display: "Syne", system-ui, sans-serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+  --display-weight: 800; --display-tracking: -0.035em;
+  --radius: 4px; --btn-radius: 4px;
+}
+[data-tema="naturale"] {
+  --bg: #f3eee4; --surface: #e8e0d0; --ink: #2b3127; --muted: #5a6152; --line: #d3c9b6;
+  --accent: #9a4f33; --accent-text: #8f4529; --accent-ink: #fbf8f2; --accent-on-dark: #e6a688;
+  --sage: #8b9a78;
+  --dark: #2e3a2b; --on-dark: #f3eee4; --on-dark-muted: #c2c7b4;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Figtree", system-ui, sans-serif;
+  --display-weight: 400; --display-tracking: -0.02em;
+  --radius: 22px; --btn-radius: 999px;
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-padding-top: calc(var(--banner-h) + var(--header-h) + 8px); -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body {
+  margin: 0; padding-top: var(--banner-h);
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 1.0625rem; line-height: 1.65;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+h1, h2, h3 {
+  margin: 0; font-family: var(--font-display); font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking); line-height: 1.02; text-wrap: balance;
+}
+p { margin: 0; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.dark :focus-visible, [data-tema="elegante"] .hero :focus-visible, [data-tema="moderno"] .hero :focus-visible { outline-color: var(--on-dark); }
+.wrap { width: min(100% - 2rem, var(--maxw)); margin-inline: auto; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: absolute; left: 1rem; top: -100px; z-index: 100; background: var(--ink); color: var(--bg); padding: .6rem 1rem; }
+.skip:focus { top: calc(var(--banner-h) + .5rem); }
+.icon { width: 1.15em; height: 1.15em; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+.section { padding-block: clamp(4.5rem, 11vw, 8.5rem); }
+.sec-head { display: grid; gap: .9rem; margin-bottom: clamp(2.25rem, 6vw, 4rem); max-width: 40rem; }
+.sec-head h2 { font-size: clamp(2.4rem, 7vw, 4.25rem); }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: .75rem;
+  font-family: var(--font-body); font-size: .78rem; font-weight: 500;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--accent-text);
+}
+.dark { background: var(--dark); color: var(--on-dark); }
+.dark .eyebrow { color: var(--accent-on-dark); }
+.lead { font-size: clamp(1.1rem, 2.2vw, 1.3rem); line-height: 1.6; color: var(--muted); }
+
+/* ---------- Pulsanti ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
+  min-height: 48px; padding: .8rem 1.5rem; border: 1px solid transparent; border-radius: var(--btn-radius);
+  font: 500 .95rem/1.2 var(--font-body); letter-spacing: .02em; text-decoration: none; cursor: pointer;
+  transition: background-color .2s, color .2s, border-color .2s, transform .2s;
+}
+.btn:active { transform: translateY(1px); }
+.btn--primary { background: var(--accent); color: var(--accent-ink); }
+.btn--primary:hover { background: var(--ink); color: var(--bg); }
+.btn--ghost { border-color: currentColor; background: transparent; }
+.btn--ghost:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.btn--small { min-height: 40px; padding: .5rem 1rem; font-size: .85rem; }
+[data-tema="elegante"] .btn { text-transform: uppercase; letter-spacing: .14em; font-size: .8rem; font-weight: 400; }
+[data-tema="moderno"] .btn { font-weight: 700; }
+
+/* ---------- Banner anteprima ---------- */
+.preview-banner {
+  position: fixed; inset: 0 0 auto 0; z-index: 60;
+  background: #161616; color: #fff;
+  font: 400 13px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+  padding: .6rem 1rem; text-align: center;
+}
+.preview-banner__tag {
+  display: inline-block; margin-right: .5rem; padding: .1rem .45rem; border-radius: 3px;
+  background: #ffd400; color: #111; font-weight: 700; font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+}
+.preview-banner a { color: #ffd400; font-weight: 600; margin-left: .35rem; white-space: nowrap; text-underline-offset: 2px; }
+.preview-banner a:focus-visible { outline-color: #ffd400; }
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky; top: var(--banner-h); z-index: 50; height: var(--header-h);
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  -webkit-backdrop-filter: saturate(1.4) blur(12px); backdrop-filter: saturate(1.4) blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.site-header .wrap { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.brand { font-family: var(--font-display); font-weight: var(--display-weight); font-size: 1.35rem; letter-spacing: var(--display-tracking); text-decoration: none; line-height: 1.1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+[data-tema="elegante"] .brand { font-size: 1.6rem; }
+[data-tema="moderno"] .brand { text-transform: uppercase; font-size: 1.1rem; }
+.nav { display: none; }
+.nav ul { display: flex; gap: 1.75rem; list-style: none; margin: 0; padding: 0; }
+.nav a { text-decoration: none; font-size: .92rem; color: var(--muted); }
+.nav a:hover { color: var(--ink); }
+@media (min-width: 960px) { .nav { display: block; } }
+
+/* ---------- Hero ---------- */
+.hero { position: relative; isolation: isolate; }
+.hero__media img { width: 100%; height: 100%; object-fit: cover; }
+.hero h1 { font-size: clamp(3rem, 11vw, 7.5rem); }
+.hero__slogan { font-size: clamp(1.15rem, 2.6vw, 1.5rem); line-height: 1.45; max-width: 34rem; }
+.hero__actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: .75rem; }
+.hero__content { display: grid; gap: 1.25rem; justify-items: start; }
+
+/* Elegante: foto a tutto schermo, testo centrato */
+[data-tema="elegante"] .hero { min-height: max(34rem, calc(100svh - var(--banner-h) - var(--header-h))); display: grid; color: var(--on-dark); background: var(--dark); }
+[data-tema="elegante"] .hero__inner { display: grid; align-items: end; padding-block: 5rem clamp(3rem, 8vw, 5.5rem); }
+[data-tema="elegante"] .hero__media { position: absolute; inset: 0; z-index: -1; }
+[data-tema="elegante"] .hero__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(18,14,11,.9) 0%, rgba(18,14,11,.55) 45%, rgba(18,14,11,.25) 100%); }
+[data-tema="elegante"] .hero__content { justify-items: center; text-align: center; margin-inline: auto; }
+[data-tema="elegante"] .hero .eyebrow { color: var(--accent-on-dark); }
+[data-tema="elegante"] .hero .eyebrow::before, [data-tema="elegante"] .hero .eyebrow::after { content: ""; width: 2.5rem; height: 1px; background: currentColor; opacity: .7; }
+[data-tema="elegante"] .hero h1 { font-weight: 400; font-size: clamp(3.25rem, 13vw, 8.5rem); line-height: .95; }
+[data-tema="elegante"] .hero__slogan { font-family: var(--font-display); font-style: italic; font-size: clamp(1.4rem, 3.4vw, 2rem); color: var(--on-dark); opacity: .92; }
+[data-tema="elegante"] .hero__actions { justify-content: center; }
+[data-tema="elegante"] .hero .btn--primary { background: var(--on-dark); color: var(--dark); }
+[data-tema="elegante"] .hero .btn--primary:hover { background: var(--accent-on-dark); }
+[data-tema="elegante"] .hero .btn--ghost:hover { background: var(--on-dark); color: var(--dark); border-color: var(--on-dark); }
+
+/* Moderno: blocco scuro diviso, tipografia enorme */
+[data-tema="moderno"] .hero { background: var(--dark); color: var(--on-dark); }
+[data-tema="moderno"] .hero__inner { display: grid; }
+[data-tema="moderno"] .hero__media { order: -1; height: 34svh; min-height: 14rem; margin-inline: -1rem; }
+[data-tema="moderno"] .hero__content { padding-block: 2.5rem 3.5rem; }
+[data-tema="moderno"] .hero .eyebrow { color: var(--accent-on-dark); }
+[data-tema="moderno"] .hero .eyebrow::before { content: ""; width: .6rem; height: .6rem; background: var(--accent); border-radius: 50%; }
+[data-tema="moderno"] .hero h1 { text-transform: uppercase; font-size: clamp(2.4rem, 11vw, 6rem); line-height: .92; overflow-wrap: break-word; hyphens: auto; }
+[data-tema="moderno"] .hero__slogan { color: var(--on-dark-muted); }
+[data-tema="moderno"] .hero .btn--primary:hover { background: var(--on-dark); color: var(--dark); }
+[data-tema="moderno"] .hero .btn--ghost:hover { background: var(--on-dark); color: var(--dark); border-color: var(--on-dark); }
+@media (min-width: 860px) {
+  [data-tema="moderno"] .hero__inner { grid-template-columns: 1.15fr .85fr; min-height: calc(100svh - var(--banner-h) - var(--header-h)); max-height: 56rem; }
+  [data-tema="moderno"] .hero__media { order: 0; height: auto; margin: 0 calc((100vw - min(100vw - 2rem, var(--maxw))) / -2) 0 0; }
+  [data-tema="moderno"] .hero__content { align-content: center; padding: 4rem 3rem 4rem 0; }
+  [data-tema="moderno"] .hero h1 { font-size: clamp(3rem, 6.4vw, 6.25rem); }
+}
+
+/* Naturale: testo e foto ad arco su fondo crema */
+[data-tema="naturale"] .hero { padding-block: clamp(2.5rem, 7vw, 5rem) clamp(3.5rem, 8vw, 6rem); overflow: hidden; }
+[data-tema="naturale"] .hero__inner { display: grid; gap: 2.75rem; align-items: center; }
+[data-tema="naturale"] .hero h1 { font-weight: 350; font-size: clamp(3rem, 10vw, 6.5rem); font-variation-settings: "SOFT" 100, "opsz" 144; }
+[data-tema="naturale"] .hero__slogan { font-family: var(--font-display); font-style: italic; font-weight: 300; color: var(--muted); font-size: clamp(1.3rem, 3vw, 1.75rem); }
+[data-tema="naturale"] .hero__media { position: relative; width: min(100%, 26rem); justify-self: center; }
+[data-tema="naturale"] .hero__media::before { content: ""; position: absolute; z-index: -1; width: 70%; aspect-ratio: 1; border-radius: 50%; background: var(--sage); opacity: .35; right: -18%; bottom: -10%; }
+[data-tema="naturale"] .hero__media picture { display: block; aspect-ratio: 4 / 5; border-radius: 999px 999px var(--radius) var(--radius); overflow: hidden; }
+@media (min-width: 860px) {
+  [data-tema="naturale"] .hero__inner { grid-template-columns: 1.1fr .9fr; gap: 4rem; }
+  [data-tema="naturale"] .hero__media { justify-self: end; }
+}
+
+/* Striscia scorrevole (solo moderno) */
+.ticker { display: none; }
+[data-tema="moderno"] .ticker { display: block; overflow: hidden; background: var(--accent); color: var(--accent-ink); padding-block: .9rem; }
+.ticker__track { display: flex; width: max-content; gap: 2.5rem; font: 700 1.05rem/1 var(--font-display); text-transform: uppercase; letter-spacing: -.01em; }
+.ticker__track span { display: inline-flex; align-items: center; gap: 2.5rem; white-space: nowrap; }
+.ticker__track span::after { content: "✦"; font-size: .8em; }
+@media (prefers-reduced-motion: no-preference) { .ticker__track { animation: ticker 38s linear infinite; } }
+@keyframes ticker { to { transform: translateX(-50%); } }
+
+/* ---------- Chi siamo ---------- */
+.about__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(2.5rem, 6vw, 5rem); align-items: center; }
+.about__media { position: relative; max-width: 28rem; }
+.about__media img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius); }
+.about__text { display: grid; gap: 1.5rem; }
+.about__text h2 { font-size: clamp(2.4rem, 6.5vw, 4rem); }
+.about__text .lead { color: var(--ink); max-width: 36rem; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 1.25rem 2rem; margin: .5rem 0 0; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.facts dt { font-size: .75rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.facts dd { margin: .25rem 0 0; font-weight: 500; }
+[data-tema="elegante"] .about__media::before { content: ""; position: absolute; inset: 1.25rem -1.25rem -1.25rem 1.25rem; border: 1px solid var(--accent); z-index: -1; }
+[data-tema="elegante"] .about { position: relative; isolation: isolate; }
+[data-tema="elegante"] .about__media { margin-right: 1.25rem; }
+[data-tema="moderno"] .about__media::before { content: ""; position: absolute; inset: auto auto -1rem -1rem; width: 55%; height: 55%; background: var(--accent); z-index: -1; border-radius: var(--radius); }
+[data-tema="moderno"] .about { isolation: isolate; }
+[data-tema="moderno"] .about__text h2 { text-transform: uppercase; }
+[data-tema="naturale"] .about__media img { border-radius: var(--radius) 160px var(--radius) var(--radius); }
+@media (min-width: 860px) {
+  .about__grid { grid-template-columns: 5fr 6fr; }
+  [data-tema="elegante"] .about__media, [data-tema="naturale"] .about__media { margin-right: 1.25rem; }
+}
+
+/* ---------- Servizi ---------- */
+.services { background: var(--surface); }
+[data-tema="moderno"] .services { background: var(--bg); }
+.services__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); column-gap: 4.5rem; counter-reset: srv; }
+@media (min-width: 860px) { .services__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.service { padding-block: 1.4rem; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1fr); gap: .4rem; counter-increment: srv; }
+.service__head { display: flex; align-items: baseline; gap: .75rem; }
+.service h3 { font-size: 1.3rem; line-height: 1.2; min-width: 0; overflow-wrap: break-word; hyphens: auto; }
+.service__leader { flex: 1; min-width: 1rem; }
+.service__price { font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.service p { color: var(--muted); font-size: .98rem; max-width: 34rem; }
+.service__book { justify-self: start; display: inline-flex; align-items: center; gap: .4rem; margin-top: .2rem; font-size: .85rem; font-weight: 500; color: var(--accent-text); text-decoration: none; }
+.service__book:hover { text-decoration: underline; text-underline-offset: 3px; }
+[data-tema="elegante"] .service h3 { font-size: 1.7rem; font-weight: 500; }
+[data-tema="elegante"] .service__leader { border-bottom: 1px dotted var(--muted); transform: translateY(-.35em); opacity: .6; }
+[data-tema="elegante"] .service__price { font-family: var(--font-display); font-size: 1.45rem; font-weight: 500; color: var(--accent-text); }
+[data-tema="moderno"] .services__list { gap: .75rem; }
+[data-tema="moderno"] .service { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.5rem; position: relative; }
+[data-tema="moderno"] .service::before { content: counter(srv, decimal-leading-zero); font: 700 .8rem/1 var(--font-display); color: var(--accent-text); margin-bottom: .5rem; }
+[data-tema="moderno"] .service { container-type: inline-size; }
+[data-tema="moderno"] .service h3 { text-transform: uppercase; font-size: clamp(.8rem, 5.2cqi, 1.15rem); letter-spacing: -.01em; flex: 1 1 12rem; }
+[data-tema="moderno"] .service__head { display: block; }
+[data-tema="moderno"] .service__price { position: absolute; top: 1.1rem; right: 1.1rem; }
+[data-tema="moderno"] .service__leader { display: none; }
+[data-tema="moderno"] .service__price { background: var(--ink); color: var(--bg); padding: .25rem .6rem; border-radius: var(--radius); font-size: .9rem; }
+[data-tema="naturale"] .service h3 { font-size: 1.45rem; }
+[data-tema="naturale"] .service__price { color: var(--accent-text); }
+
+/* ---------- Galleria ---------- */
+.gallery { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
+.gallery li { overflow: hidden; border-radius: var(--radius); background: var(--surface); }
+.gallery li:first-child { grid-column: span 2; }
+.gallery img { width: 100%; height: 100%; aspect-ratio: 1; object-fit: cover; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+.gallery li:first-child img { aspect-ratio: 16 / 10; }
+@media (hover: hover) { .gallery li:hover img { transform: scale(1.04); } }
+@media (min-width: 760px) {
+  .gallery { grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .gallery li:first-child { grid-row: span 2; }
+  .gallery li:first-child img { aspect-ratio: auto; }
+}
+.gallery-note { margin-top: 1.25rem; font-size: .85rem; color: var(--muted); }
+
+/* ---------- Orari + mappa ---------- */
+.visit__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(3.5rem, 8vw, 5rem); }
+@media (min-width: 900px) { .visit__grid.has-both { grid-template-columns: 5fr 7fr; } }
+.visit h2 { font-size: clamp(2.2rem, 5.5vw, 3.25rem); }
+.hours { margin: 0; }
+.hours__row { display: flex; justify-content: space-between; gap: 1rem; padding-block: .95rem; border-bottom: 1px solid var(--line); }
+.hours__row dt { font-weight: 500; display: flex; align-items: center; gap: .6rem; }
+.hours__row dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
+.hours__row.is-closed dd { color: var(--muted); }
+.hours__row.is-today { color: var(--accent-text); }
+.hours__badge { font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: .15rem .5rem; border-radius: var(--btn-radius); background: var(--accent); color: var(--accent-ink); }
+.map { display: grid; gap: 1.25rem; }
+.map__frame { width: 100%; aspect-ratio: 4 / 3; border: 0; border-radius: var(--radius); background: var(--surface); }
+@media (min-width: 900px) { .map__frame { aspect-ratio: 16 / 11; } }
+[data-tema="elegante"] .map__frame, [data-tema="moderno"] .map__frame { filter: grayscale(.85) contrast(1.05); }
+.map__address { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem 1.5rem; }
+.map__address p { display: flex; gap: .6rem; align-items: flex-start; font-weight: 500; }
+.map__address .icon { margin-top: .25em; color: var(--accent-text); }
+
+/* ---------- Contatti ---------- */
+.contact__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 3rem; }
+@media (min-width: 900px) { .contact__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: end; } }
+.contact h2 { font-size: clamp(2.6rem, 8vw, 5rem); overflow-wrap: break-word; hyphens: auto; }
+.contact__intro { container-type: inline-size; }
+[data-tema="moderno"] .contact h2 { text-transform: uppercase; font-size: clamp(1.25rem, 6.6cqi, 2.75rem); }
+.contact .lead { color: var(--on-dark-muted); margin-top: 1.25rem; }
+.contact .btn--primary { margin-top: 2rem; }
+.contact .btn--primary:hover { background: var(--on-dark); color: var(--dark); }
+[data-tema="elegante"] .contact .btn--primary { background: var(--on-dark); color: var(--dark); }
+[data-tema="elegante"] .contact .btn--primary:hover { background: var(--accent-on-dark); }
+.contact__list { list-style: none; margin: 0; padding: 0; }
+.contact__list li { border-top: 1px solid rgba(255,255,255,.14); }
+.contact__list li:last-child { border-bottom: 1px solid rgba(255,255,255,.14); }
+.contact__item { display: flex; align-items: center; gap: 1rem; padding-block: 1.15rem; text-decoration: none; }
+.contact__item .icon { color: var(--accent-on-dark); width: 1.3em; height: 1.3em; }
+.contact__label { display: block; font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--on-dark-muted); }
+.contact__value { display: block; font-size: 1.1rem; overflow-wrap: anywhere; }
+a.contact__item:hover .contact__value { text-decoration: underline; text-underline-offset: 4px; }
+
+/* ---------- Footer ---------- */
+.site-footer { padding-block: 2.5rem calc(2.5rem + env(safe-area-inset-bottom)); border-top: 1px solid rgba(255,255,255,.1); font-size: .88rem; color: var(--on-dark-muted); }
+.site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem 2rem; }
+.site-footer strong { color: var(--on-dark); font-family: var(--font-display); font-weight: var(--display-weight); font-size: 1.25rem; letter-spacing: var(--display-tracking); }
+
+/* ---------- Errore dati ---------- */
+.data-error { max-width: 36rem; margin: 6rem auto; padding: 2rem; border: 1px dashed var(--line); font-family: system-ui, sans-serif; }
+
+/* ---------- Animazioni d'ingresso ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .js-reveal .reveal { opacity: 0; transform: translateY(18px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+  .js-reveal .reveal.is-in { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenuto">Vai al contenuto</a>
+
+<aside class="preview-banner" id="preview-banner" aria-label="Avviso anteprima">
+  <span class="preview-banner__tag">Demo</span>
+  Anteprima realizzata da Flavio Visconti – questo non è il sito ufficiale dell'attività.
+  <a id="preview-contact" href="#">Ti piace? Contattami</a>
+</aside>
+
+<div id="app"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ===== Configurazione autore della demo ===== */
+  var AUTORE_WHATSAPP = '393395283615';
+  var AUTORE_EMAIL = 'flaviovisconti@icloud.com';
+
+  /* ===== Utilità ===== */
+  var ICONS = {
+    chat: '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>',
+    phone: '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>',
+    mail: '<path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="m22 6-10 7L2 6"/>',
+    pin: '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>',
+    arrow: '<path d="M7 17 17 7M7 7h10v10"/>'
+  };
+  function icon(name) {
+    var s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    s.setAttribute('class', 'icon'); s.setAttribute('viewBox', '0 0 24 24'); s.setAttribute('aria-hidden', 'true');
+    s.innerHTML = ICONS[name];
+    return s;
+  }
+  // Crea un elemento: i testi passano sempre da append(), quindi non vengono mai interpretati come HTML.
+  function h(tag, attrs) {
+    var n = document.createElement(tag);
+    for (var k in attrs || {}) {
+      var v = attrs[k];
+      if (v == null || v === false) continue;
+      if (k === 'class') n.className = v; else n.setAttribute(k, v === true ? '' : v);
+    }
+    for (var i = 2; i < arguments.length; i++) {
+      [].concat(arguments[i]).forEach(function (c) {
+        if (c == null || c === false || c === '') return;
+        n.append(c instanceof Node ? c : String(c));
+      });
+    }
+    return n;
+  }
+  function str(v) { return (typeof v === 'string' || typeof v === 'number') ? String(v).trim() : ''; }
+  function list(v) { return Array.isArray(v) ? v.filter(function (x) { return x && typeof x === 'object'; }) : []; }
+  function norm(s) { return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
+
+  /* ===== Dati ===== */
+  var D;
+  try {
+    D = JSON.parse(document.getElementById('dati').textContent);
+    if (!D || typeof D !== 'object' || Array.isArray(D)) throw new Error('formato');
+  } catch (e) {
+    document.getElementById('app').append(h('div', { class: 'data-error', role: 'alert' },
+      h('strong', null, 'Dati mancanti o non validi.'),
+      h('p', null, 'Il blocco <script id="dati"> deve contenere un oggetto JSON valido.')));
+    return;
+  }
+
+  var root = document.documentElement;
+  var tipo = root.getAttribute('data-tipo');
+  var tema = root.getAttribute('data-tema');
+
+  var TIPI = {
+    barbiere: { label: 'Barbiere', luogo: 'La bottega', foto: [
+      'Barbiere che rifinisce la barba di un cliente con il rasoio',
+      'Rasatura tradizionale con schiuma, in bianco e nero',
+      'Sfumatura sulla nuca eseguita con la tosatrice',
+      'Taglio con forbici e sfumatura laterale',
+      'Capelli pettinati all\'indietro con pettine a denti larghi',
+      'Rifinitura di un taglio corto con pettine e forbici',
+      'Poltrona da barbiere in pelle in stile vintage'] },
+    parrucchiere: { label: 'Parrucchiere', luogo: 'Il salone', foto: [
+      'Parrucchiera che asciuga i capelli di una cliente',
+      'Donna di spalle con lunghi capelli mossi su sfondo rosa',
+      'Piega con phon e spazzola tonda',
+      'Lavaggio dei capelli al lavatesta',
+      'Trattamento ai capelli al lavatesta',
+      'Phon, spazzola e pettine su un tappeto bianco',
+      'Mani che sollevano spazzole e forbici da parrucchiere'] },
+    estetista: { label: 'Centro estetico', luogo: 'Il centro', foto: [
+      'Trattamento viso con maschera applicata a pennello',
+      'Massaggio alla schiena con olio',
+      'Trucco occhi con eyeliner',
+      'Pennello e cipria in un vasetto',
+      'Pedicure con fiori decorativi',
+      'Asciugamano arrotolato, flacone e tulipani rosa',
+      'Massaggio al viso visto dall\'alto'] }
+  };
+  var T = TIPI[tipo];
+  var IMG = root.getAttribute('data-assets') + tipo + '/';
+
+  var nome = str(D.nome) || T.label;
+  var quartiere = str(D.quartiere);
+  var slogan = str(D.slogan);
+  var descrizione = str(D.descrizione);
+  var indirizzo = str(D.indirizzo);
+  var telefono = str(D.telefono);
+  var email = str(D.email);
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) email = '';
+  var wa = str(D.whatsapp).replace(/\D/g, '').replace(/^00/, '');
+  if (wa.length < 8) wa = '';
+  var telHref = telefono.replace(/[^\d+]/g, '');
+  if (telHref.replace(/\D/g, '').length < 6) telHref = '';
+
+  var servizi = list(D.servizi).map(function (s) {
+    return { nome: str(s.nome), descrizione: str(s.descrizione), prezzo: prezzo(s.prezzo) };
+  }).filter(function (s) { return s.nome; });
+
+  var orari = list(D.orari).map(function (o) { return { giorno: str(o.giorno), orario: str(o.orario) }; })
+    .filter(function (o) { return o.giorno; });
+
+  function prezzo(v) {
+    if (typeof v === 'string' && /^\d+([.,]\d+)?$/.test(v.trim())) v = parseFloat(v.replace(',', '.'));
+    if (typeof v === 'number' && isFinite(v)) {
+      return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR', minimumFractionDigits: v % 1 ? 2 : 0 }).format(v);
+    }
+    return str(v);
+  }
+
+  function waLink(testo) { return 'https://wa.me/' + wa + '?text=' + encodeURIComponent(testo); }
+  var msgBase = 'Ciao ' + nome + ', vorrei prenotare un appuntamento.';
+
+  // Pulsante principale: WhatsApp se c'è, altrimenti telefono, altrimenti niente.
+  function ctaPrincipale(cls, label) {
+    if (wa) return h('a', { class: 'btn btn--primary ' + (cls || ''), href: waLink(msgBase), target: '_blank', rel: 'noopener' },
+      icon('chat'), label || 'Prenota su WhatsApp');
+    if (telHref) return h('a', { class: 'btn btn--primary ' + (cls || ''), href: 'tel:' + telHref }, icon('phone'), 'Chiama per prenotare');
+    return null;
+  }
+
+  var GIORNI = ['dom', 'lun', 'mar', 'mer', 'gio', 'ven', 'sab'];
+  var oggi = GIORNI[new Date().getDay()];
+  function isOggi(giorno) {
+    var g = norm(giorno);
+    return g.slice(0, 3) === oggi && !/[-–—,/]|\bal\b/.test(g);
+  }
+  var orarioOggi = (orari.filter(function (o) { return isOggi(o.giorno); })[0] || {}).orario;
+
+  /* ===== Meta pagina ===== */
+  document.title = nome + ' – ' + T.label + (quartiere ? ' a ' + quartiere : '') + ' (anteprima)';
+  var cont = document.getElementById('preview-contact');
+  cont.href = 'https://wa.me/' + AUTORE_WHATSAPP + '?text=' +
+    encodeURIComponent('Ciao Flavio, ho visto l\'anteprima del sito per ' + nome + ' e vorrei saperne di più.');
+  cont.target = '_blank'; cont.rel = 'noopener';
+
+  /* ===== Sezioni ===== */
+  var app = document.getElementById('app');
+  var nav = [];
+
+  // Hero
+  var hero = h('section', { class: 'hero', 'aria-labelledby': 'hero-title' },
+    h('div', { class: 'wrap hero__inner' },
+      h('div', { class: 'hero__content' },
+        h('p', { class: 'eyebrow' }, T.label + (quartiere ? ' · ' + quartiere : '')),
+        h('h1', { id: 'hero-title' }, nome),
+        slogan && h('p', { class: 'hero__slogan' }, slogan),
+        h('div', { class: 'hero__actions' },
+          ctaPrincipale(),
+          servizi.length && h('a', { class: 'btn btn--ghost', href: '#servizi' }, 'Servizi e prezzi'))),
+      h('div', { class: 'hero__media' },
+        h('picture', null,
+          h('source', { media: '(min-width: 760px)', srcset: IMG + 'hero-1600.webp', width: 1600, height: 1000 }),
+          h('img', { src: IMG + 'hero-800.webp', width: 800, height: 1100, alt: T.foto[0], fetchpriority: 'high' })))));
+
+  // Striscia servizi (visibile nel tema moderno)
+  var ticker = null;
+  if (servizi.length) {
+    var voci = servizi.map(function (s) { return h('span', null, s.nome); });
+    ticker = h('div', { class: 'ticker', 'aria-hidden': 'true' },
+      h('div', { class: 'ticker__track' }, voci, voci.map(function (v) { return v.cloneNode(true); }), voci.map(function (v) { return v.cloneNode(true); }), voci.map(function (v) { return v.cloneNode(true); })));
+  }
+
+  // Chi siamo
+  var about = null;
+  if (descrizione) {
+    nav.push(['chi-siamo', 'Chi siamo']);
+    var facts = [];
+    if (orarioOggi) facts.push(['Oggi', orarioOggi]);
+    if (indirizzo) facts.push(['Dove', indirizzo]);
+    else if (quartiere) facts.push(['Zona', quartiere]);
+    if (servizi.length) facts.push(['In listino', servizi.length === 1 ? '1 servizio' : servizi.length + ' servizi']);
+    about = h('section', { class: 'section about', id: 'chi-siamo', 'aria-labelledby': 'about-title' },
+      h('div', { class: 'wrap about__grid' },
+        h('div', { class: 'about__media reveal' },
+          h('img', { src: IMG + 'chi-siamo.webp', width: 900, height: 1100, alt: T.foto[1], loading: 'lazy', decoding: 'async' })),
+        h('div', { class: 'about__text reveal' },
+          h('p', { class: 'eyebrow' }, 'Chi siamo'),
+          h('h2', { id: 'about-title' }, quartiere ? T.luogo + ' a ' + quartiere : T.luogo),
+          h('p', { class: 'lead' }, descrizione),
+          facts.length && h('dl', { class: 'facts' }, facts.map(function (f) {
+            return h('div', null, h('dt', null, f[0]), h('dd', null, f[1]));
+          })))));
+  }
+
+  // Servizi
+  var services = null;
+  if (servizi.length) {
+    nav.push(['servizi', 'Servizi']);
+    services = h('section', { class: 'section services', id: 'servizi', 'aria-labelledby': 'services-title' },
+      h('div', { class: 'wrap' },
+        h('div', { class: 'sec-head reveal' },
+          h('p', { class: 'eyebrow' }, 'Listino'),
+          h('h2', { id: 'services-title' }, 'Servizi e prezzi')),
+        h('ul', { class: 'services__list' }, servizi.map(function (s) {
+          return h('li', { class: 'service reveal' },
+            h('div', { class: 'service__head' },
+              h('h3', null, s.nome),
+              h('span', { class: 'service__leader', 'aria-hidden': 'true' }),
+              s.prezzo && h('span', { class: 'service__price' }, s.prezzo)),
+            s.descrizione && h('p', null, s.descrizione),
+            wa && h('a', { class: 'service__book', href: waLink('Ciao ' + nome + ', vorrei prenotare: ' + s.nome + '.'), target: '_blank', rel: 'noopener', 'aria-label': 'Prenota ' + s.nome + ' su WhatsApp' },
+              'Prenota', icon('arrow')));
+        }))));
+  }
+
+  // Galleria
+  nav.push(['galleria', 'Galleria']);
+  var gallery = h('section', { class: 'section gallery-sec', id: 'galleria', 'aria-labelledby': 'gallery-title' },
+    h('div', { class: 'wrap' },
+      h('div', { class: 'sec-head reveal' },
+        h('p', { class: 'eyebrow' }, 'Galleria'),
+        h('h2', { id: 'gallery-title' }, 'Atmosfere')),
+      h('ul', { class: 'gallery' }, [1, 2, 3, 4, 5].map(function (i) {
+        return h('li', { class: 'reveal' },
+          h('img', { src: IMG + 'galleria-' + i + '.webp', width: 900, height: 900, alt: T.foto[i + 1], loading: 'lazy', decoding: 'async' }));
+      })),
+      h('p', { class: 'gallery-note' }, 'Immagini di repertorio a scopo illustrativo.')));
+
+  // Orari e mappa
+  var visit = null;
+  if (orari.length || indirizzo) {
+    var blocchi = [];
+    if (orari.length) {
+      nav.push(['orari', 'Orari']);
+      blocchi.push(h('div', { class: 'visit__hours reveal', id: 'orari' },
+        h('div', { class: 'sec-head' }, h('p', { class: 'eyebrow' }, 'Quando'), h('h2', null, 'Orari di apertura')),
+        h('dl', { class: 'hours' }, orari.map(function (o) {
+          var today = isOggi(o.giorno);
+          var closed = /chius/i.test(o.orario) || !o.orario;
+          return h('div', { class: 'hours__row' + (today ? ' is-today' : '') + (closed ? ' is-closed' : '') },
+            h('dt', null, o.giorno, today && h('span', { class: 'hours__badge' }, 'Oggi')),
+            h('dd', null, o.orario || 'Chiuso'));
+        }))));
+    }
+    if (indirizzo) {
+      nav.push(['dove', 'Dove siamo']);
+      var q = encodeURIComponent(indirizzo);
+      blocchi.push(h('div', { class: 'map reveal', id: 'dove' },
+        h('div', { class: 'sec-head', style: 'margin-bottom:.75rem' }, h('p', { class: 'eyebrow' }, 'Dove'), h('h2', null, 'Dove siamo')),
+        h('iframe', { class: 'map__frame', src: 'https://maps.google.com/maps?q=' + q + '&z=16&output=embed', title: 'Mappa: ' + indirizzo, loading: 'lazy', referrerpolicy: 'no-referrer-when-downgrade', allowfullscreen: true }),
+        h('div', { class: 'map__address' },
+          h('p', null, icon('pin'), indirizzo),
+          h('a', { class: 'btn btn--ghost btn--small', href: 'https://www.google.com/maps/dir/?api=1&destination=' + q, target: '_blank', rel: 'noopener' }, 'Indicazioni stradali', icon('arrow')))));
+    }
+    visit = h('section', { class: 'section visit', 'aria-label': 'Orari e posizione' },
+      h('div', { class: 'wrap visit__grid' + (blocchi.length > 1 ? ' has-both' : '') }, blocchi));
+  }
+
+  // Contatti
+  var contatti = [];
+  if (wa) contatti.push(['chat', 'WhatsApp', '+' + wa.replace(/^(\d{2})(\d{3})(\d+)/, '$1 $2 $3'), waLink(msgBase)]);
+  if (telefono) contatti.push(['phone', 'Telefono', telefono, telHref && 'tel:' + telHref]);
+  if (email) contatti.push(['mail', 'Email', email, 'mailto:' + email]);
+  if (indirizzo) contatti.push(['pin', 'Indirizzo', indirizzo, 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(indirizzo)]);
+
+  var contact = null;
+  if (contatti.length) {
+    nav.push(['contatti', 'Contatti']);
+    contact = h('section', { class: 'section contact dark', id: 'contatti', 'aria-labelledby': 'contact-title' },
+      h('div', { class: 'wrap contact__grid' },
+        h('div', { class: 'contact__intro reveal' },
+          h('p', { class: 'eyebrow' }, 'Contatti'),
+          h('h2', { id: 'contact-title' }, 'Prenota il tuo appuntamento'),
+          h('p', { class: 'lead' }, wa ? 'Scrivi su WhatsApp o chiama per fissare data e ora.' : 'Contattaci per fissare data e ora.'),
+          ctaPrincipale()),
+        h('ul', { class: 'contact__list reveal' }, contatti.map(function (c) {
+          var inner = [icon(c[0]), h('span', null, h('span', { class: 'contact__label' }, c[1]), h('span', { class: 'contact__value' }, c[2]))];
+          var ext = c[3] && /^https/.test(c[3]);
+          return h('li', null, c[3]
+            ? h('a', { class: 'contact__item', href: c[3], target: ext ? '_blank' : null, rel: ext ? 'noopener' : null }, inner)
+            : h('div', { class: 'contact__item' }, inner));
+        }))));
+  }
+
+  // Header
+  var header = h('header', { class: 'site-header' },
+    h('div', { class: 'wrap' },
+      h('a', { class: 'brand', href: '#contenuto' }, nome),
+      h('nav', { class: 'nav', 'aria-label': 'Sezioni' },
+        h('ul', null, nav.map(function (n) { return h('li', null, h('a', { href: '#' + n[0] }, n[1])); }))),
+      ctaPrincipale('btn--small', wa ? 'Prenota' : 'Chiama')));
+
+  // Footer
+  var footer = h('footer', { class: 'site-footer dark' },
+    h('div', { class: 'wrap' },
+      h('div', null, h('strong', null, nome), indirizzo && h('div', null, indirizzo)),
+      h('div', null,
+        h('div', null, '© ' + new Date().getFullYear() + ' ' + nome),
+        h('div', null, 'Anteprima dimostrativa, non è il sito ufficiale dell\'attività.'),
+        h('div', null, 'Realizzata da Flavio Visconti · ',
+          h('a', { href: 'mailto:' + AUTORE_EMAIL + '?subject=' + encodeURIComponent('Sito per ' + nome) }, AUTORE_EMAIL)))));
+
+  var main = h('main', { id: 'contenuto', tabindex: '-1' }, hero, ticker, about, services, gallery, visit, contact);
+  app.append(header, main, footer);
+
+  /* ===== Altezza del banner (può andare su due righe) ===== */
+  var banner = document.getElementById('preview-banner');
+  function syncBanner() { root.style.setProperty('--banner-h', banner.offsetHeight + 'px'); }
+  syncBanner();
+  if ('ResizeObserver' in window) new ResizeObserver(syncBanner).observe(banner);
+
+  /* ===== Animazioni d'ingresso ===== */
+  if ('IntersectionObserver' in window && matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    root.classList.add('js-reveal');
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+  }
+})();
+</script>
+</body>
+</html>
